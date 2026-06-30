@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>茶迴 TeaLoop | 新創手搖飲品牌</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- 引入 FontAwesome 作為圖示 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    },
+                    colors: {
+                        tea: {
+                            50: '#f2fcf5',
+                            100: '#e1f8e8',
+                            200: '#c3efd3',
+                            300: '#94e0b3',
+                            400: '#5fc98d',
+                            500: '#39ad6d',
+                            600: '#298b55',
+                            700: '#236e45',
+                            800: '#1f5839',
+                            900: '#1a4830',
+                        },
+                        boba: '#4A3728'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 自訂捲軸 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #39ad6d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #298b55;
+        }
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(26, 72, 48, 0.8), rgba(26, 72, 48, 0.4));
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-tea-300 selection:text-tea-900">
+
+    <!-- 導覽列 -->
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-leaf text-tea-600 text-2xl"></i>
+                    <span class="font-bold text-2xl text-tea-800 tracking-wider">茶迴 TeaLoop</span>
+                </div>
+                <!-- 桌面版選單 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-tea-600 font-medium transition">品牌介紹</a>
+                    <a href="#features" class="text-gray-600 hover:text-tea-600 font-medium transition">特色堅持</a>
+                    <a href="#products" class="text-gray-600 hover:text-tea-600 font-medium transition">茶品展示</a>
+                    <a href="#equipment" class="text-gray-600 hover:text-tea-600 font-medium transition">裝備建議</a>
+                    <a href="#order" class="bg-tea-600 text-white px-5 py-2 rounded-full hover:bg-tea-700 font-medium transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">線上點餐</a>
+                </nav>
+                <!-- 手機版漢堡選單按鈕 -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-tea-600 focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 手機版選單面板 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col text-center">
+                <a href="#about" class="block px-3 py-3 text-gray-700 hover:bg-tea-50 hover:text-tea-600 rounded-md">品牌介紹</a>
+                <a href="#features" class="block px-3 py-3 text-gray-700 hover:bg-tea-50 hover:text-tea-600 rounded-md">特色堅持</a>
+                <a href="#products" class="block px-3 py-3 text-gray-700 hover:bg-tea-50 hover:text-tea-600 rounded-md">茶品展示</a>
+                <a href="#equipment" class="block px-3 py-3 text-gray-700 hover:bg-tea-50 hover:text-tea-600 rounded-md">裝備建議</a>
+                <a href="#order" class="block px-3 py-3 text-tea-700 font-bold bg-tea-100 rounded-md mx-2 mt-2">線上點餐</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主視覺 Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- 背景圖 -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1558857563-b37102e96bfb?q=80&w=1920&auto=format&fit=crop" alt="質感手搖飲" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        <!-- 內容 -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
+            <span class="block text-tea-300 font-medium tracking-widest mb-4 animate-fade-in-up">2026 全新精品手搖品牌</span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                每一口，都是茶與<br/>靈魂的<span class="text-tea-300">迴旋</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto drop-shadow">
+                嚴選台灣在地小農契作茶葉，搭配手作天然配料。我們不只是賣茶，更推廣一種永續、自然的生活態度。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="px-8 py-4 bg-white text-tea-800 font-bold rounded-full hover:bg-gray-100 transition shadow-lg text-lg">探索茶品</a>
+                <a href="#order" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/20 transition shadow-lg text-lg">立即預訂</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 開店介紹 (About) -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 relative">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop" alt="茶迴門市" class="rounded-2xl shadow-xl w-full object-cover h-[400px] md:h-[500px]">
+                    <div class="absolute -bottom-6 -right-6 bg-tea-600 text-white p-6 rounded-2xl shadow-lg hidden md:block">
+                        <p class="text-4xl font-bold mb-1">100%</p>
+                        <p class="text-sm">天然無人工添加</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="inline-block px-4 py-1 bg-tea-100 text-tea-700 rounded-full font-medium text-sm mb-4">品牌故事</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">從一片葉子，到一杯執著。</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                        「茶迴 TeaLoop」創立於 2026 年的台北。創辦人深感市面上的手搖飲充斥著化學香精與過多糖分，決定回歸茶的本質。
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed text-lg">
+                        我們親自走訪台灣各大茶山，尋找願意以自然農法栽種的茶農。不僅在乎您手中的那杯茶是否好喝，更在乎它對您的健康、以及對這片土地的影響。開啟您的好茶迴圈，就從這裡開始。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check-circle text-tea-500 mr-3 text-xl"></i>
+                            <span>每日新鮮現泡，逾時廢棄</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check-circle text-tea-500 mr-3 text-xl"></i>
+                            <span>採用台糖純蔗糖，拒絕高果糖糖漿</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check-circle text-tea-500 mr-3 text-xl"></i>
+                            <span>小農鮮乳直送，香醇無調整</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色 (Features) -->
+    <section id="features" class="py-20 bg-tea-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">我們的三大堅持</h2>
+                <p class="text-gray-600 text-lg">不妥協的品質，只為了給您最好的一杯。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-tea-100 text-tea-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">嚴選產地好茶</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        與阿里山、日月潭等在地茶農深度契作。無農藥殘留，完整保留茶葉的山林純粹香氣，每一口都是自然的回甘。
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-tea-100 text-tea-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-hands-bubbles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">職人手作配料</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        珍珠、芋圓皆於門市每日手工揉製。採用天然樹薯粉與真實食材，不添加防腐劑及人工色素，口感Q彈有勁。
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-tea-100 text-tea-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-recycle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">100% 永續包裝</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        全面採用植物纖維可分解杯材與吸管。喝手搖不再對地球造成負擔，實踐真正的「茶與環境的無限迴圈」。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 產品/茶品圖片 (Products) -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">人氣茶品推薦</h2>
+                    <p class="text-gray-600 text-lg">精心調配，滿足您對美好風味的渴望。</p>
+                </div>
+                <a href="#order" class="hidden md:inline-flex items-center text-tea-600 font-bold hover:text-tea-800 transition">
+                    查看完整菜單 <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=600&auto=format&fit=crop" alt="極上琥珀烏龍" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur text-tea-800 text-xs font-bold px-3 py-1 rounded-full">
+                            純茶系列
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white border border-t-0 border-gray-100 rounded-b-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">極上琥珀烏龍</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">重度發酵，帶有熟果與蜂蜜香氣，茶湯呈現琥珀色澤，入喉回甘。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-tea-700 font-bold text-lg">NT$ 45</span>
+                            <button class="text-gray-400 hover:text-tea-600 transition" title="加入購物車"><i class="fa-solid fa-plus-circle text-2xl"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1558857563-b37102e96bfb?q=80&w=600&auto=format&fit=crop" alt="雲朵手作珍奶" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-tea-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            店長推薦
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white border border-t-0 border-gray-100 rounded-b-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">雲朵手作珍奶</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">特調阿薩姆紅茶搭配小農鮮奶，覆蓋綿密奶蓋與手工無添加珍珠。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-tea-700 font-bold text-lg">NT$ 75</span>
+                            <button class="text-gray-400 hover:text-tea-600 transition" title="加入購物車"><i class="fa-solid fa-plus-circle text-2xl"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1626844131082-256783844137?q=80&w=600&auto=format&fit=crop" alt="盛夏鮮果青茶" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            季節限定
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white border border-t-0 border-gray-100 rounded-b-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">盛夏鮮果青茶</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">以高山青茶為基底，加入當季新鮮蘋果、百香果與柳橙片，酸甜解膩。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-tea-700 font-bold text-lg">NT$ 80</span>
+                            <button class="text-gray-400 hover:text-tea-600 transition" title="加入購物車"><i class="fa-solid fa-plus-circle text-2xl"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?q=80&w=600&auto=format&fit=crop" alt="靜岡雪抹拿鐵" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur text-tea-800 text-xs font-bold px-3 py-1 rounded-full">
+                            濃厚系
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white border border-t-0 border-gray-100 rounded-b-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">靜岡雪抹拿鐵</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">進口日本靜岡無糖抹茶粉，濃郁苦甜交織鮮奶的醇厚，抹茶控必點。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-tea-700 font-bold text-lg">NT$ 85</span>
+                            <button class="text-gray-400 hover:text-tea-600 transition" title="加入購物車"><i class="fa-solid fa-plus-circle text-2xl"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center md:hidden">
+                <a href="#order" class="inline-flex items-center justify-center w-full bg-tea-100 text-tea-800 font-bold py-3 rounded-xl hover:bg-tea-200 transition">
+                    查看完整菜單 <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 裝備建議 (Gear/Equipment) -->
+    <section id="equipment" class="py-20 bg-gray-900 text-white relative overflow-hidden">
+        <!-- 裝飾圓圈 -->
+        <div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-tea-800 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-72 h-72 bg-tea-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">達人裝備建議<br/><span class="text-tea-400">自備環保杯 折扣更升級</span></h2>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        加入我們的綠色行動。使用 TeaLoop 原創設計環保裝備，不僅展現個人品味，每次購買飲品更可享有 10 元的環保折扣。讓喝茶成為一件很酷又有意義的事。
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-tea-400 border border-gray-700">
+                                <i class="fa-solid fa-mug-hot text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold mb-1">TeaLoop 鈦金屬保溫杯 (750ml)</h4>
+                                <p class="text-gray-400 text-sm">輕量抗酸鹼，完美保留果茶與原茶風味，不留異味。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-tea-400 border border-gray-700">
+                                <i class="fa-solid fa-bag-shopping text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold mb-1">亞麻棉編織飲料提袋</h4>
+                                <p class="text-gray-400 text-sm">手工編織，質感文青，適用於市面上 90% 的手搖杯型。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-tea-400 border border-gray-700">
+                                <i class="fa-solid fa-stroopwafel text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold mb-1">高硼矽玻璃吸管套組</h4>
+                                <p class="text-gray-400 text-sm">內含粗/細吸管及清潔刷。透明乾淨，吸珍珠順暢不卡。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1606231140504-b6ec7cdeba2e?q=80&w=400&auto=format&fit=crop" alt="保溫杯" class="rounded-2xl w-full h-64 object-cover transform translate-y-8 shadow-2xl border border-gray-700">
+                        <img src="https://images.unsplash.com/photo-1610440042657-612c34d95e9f?q=80&w=400&auto=format&fit=crop" alt="提袋裝備" class="rounded-2xl w-full h-64 object-cover shadow-2xl border border-gray-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 購買表單 (Order Form) -->
+    <section id="order" class="py-24 bg-gray-50 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                <div class="flex flex-col md:flex-row">
+                    <!-- 表單左側資訊 -->
+                    <div class="md:w-2/5 bg-tea-600 p-10 text-white flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-4">線上快速預訂</h3>
+                            <p class="text-tea-100 mb-8 leading-relaxed">
+                                免排隊，線上點餐到店取。滿 NT$300 即享方圓 3 公里內免費外送服務。
+                            </p>
+                            <div class="space-y-4 text-sm text-tea-50">
+                                <p class="flex items-center"><i class="fa-solid fa-clock w-6 text-tea-300"></i> 營業時間：10:00 - 22:00</p>
+                                <p class="flex items-center"><i class="fa-solid fa-phone w-6 text-tea-300"></i> 客服專線：02-2345-6789</p>
+                                <p class="flex items-center"><i class="fa-solid fa-location-dot w-6 text-tea-300"></i> 台北市信義區茶迴路 1 號</p>
+                            </div>
+                        </div>
+                        <div class="mt-12 opacity-50">
+                            <i class="fa-solid fa-leaf text-8xl"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 表單輸入區 -->
+                    <div class="md:w-3/5 p-10">
+                        <form id="orderForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">訂購人姓名 <span class="text-red-500">*</span></label>
+                                    <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tea-500 focus:border-tea-500 outline-none transition bg-gray-50 focus:bg-white" placeholder="王小明">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">聯絡電話 <span class="text-red-500">*</span></label>
+                                    <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tea-500 focus:border-tea-500 outline-none transition bg-gray-50 focus:bg-white" placeholder="0912-345-678">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="drink" class="block text-sm font-medium text-gray-700 mb-1">選擇飲品 <span class="text-red-500">*</span></label>
+                                <select id="drink" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tea-500 focus:border-tea-500 outline-none transition bg-gray-50 focus:bg-white appearance-none">
+                                    <option value="" disabled selected>請選擇想喝的茶品...</option>
+                                    <optgroup label="純茶系列">
+                                        <option value="極上琥珀烏龍">極上琥珀烏龍 (NT$45)</option>
+                                        <option value="初雪高山青">初雪高山青 (NT$40)</option>
+                                    </optgroup>
+                                    <optgroup label="職人特調">
+                                        <option value="雲朵手作珍奶">雲朵手作珍奶 (NT$75)</option>
+                                        <option value="靜岡雪抹拿鐵">靜岡雪抹拿鐵 (NT$85)</option>
+                                    </optgroup>
+                                    <optgroup label="鮮果茶">
+                                        <option value="盛夏鮮果青茶">盛夏鮮果青茶 (NT$80)</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label for="sugar" class="block text-sm font-medium text-gray-700 mb-1">甜度</label>
+                                    <select id="sugar" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tea-500 focus:border-tea-500 outline-none transition bg-gray-50 focus:bg-white appearance-none">
+                                        <option value="正常糖">正常糖</option>
+                                        <option value="少糖">少糖 (7分)</option>
+                                        <option value="半糖">半糖 (5分)</option>
+                                        <option value="微糖" selected>微糖 (3分)</option>
+                                        <option value="無糖">無糖</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="ice" class="block text-sm font-medium text-gray-700 mb-1">冰塊</label>
+                                    <select id="ice" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tea-500 focus:border-tea-500 outline-none transition bg-gray-50 focus:bg-white appearance-none">
+                                        <option value="正常冰">正常冰</option>
+                                        <option value="少冰" selected>少冰</option>
+                                        <option value="微冰">微冰</option>
+                                        <option value="去冰">去冰</option>
+                                        <option value="常溫">常溫</option>
+                                        <option value="溫熱">溫熱</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" id="ecoCup" class="w-5 h-5 text-tea-600 border-gray-300 rounded focus:ring-tea-500">
+                                    <span class="text-gray-700 font-medium text-sm">我要使用自備環保杯（現場退 NT$10）</span>
+                                </label>
+                            </div>
+
+                            <div>
+                                <label for="memo" class="block text-sm font-medium text-gray-700 mb-1">備註要求</label>
+                                <textarea id="memo" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tea-500 focus:border-tea-500 outline-none transition bg-gray-50 focus:bg-white resize-none" placeholder="例如：珍珠少一點、下午三點取餐..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-tea-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-tea-700 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                確認送出訂單
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-leaf text-tea-500 text-2xl"></i>
+                        <span class="font-bold text-2xl text-white tracking-wider">茶迴 TeaLoop</span>
+                    </div>
+                    <p class="mb-6 max-w-sm">我們相信好茶不需要複雜的添加，以最純粹的方式呈現自然風味，同時致力於環境永續發展。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-tea-600 hover:text-white transition cursor-pointer"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-tea-600 hover:text-white transition cursor-pointer"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-tea-600 hover:text-white transition cursor-pointer"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">網站導覽</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-tea-400 transition">關於我們</a></li>
+                        <li><a href="#features" class="hover:text-tea-400 transition">特色堅持</a></li>
+                        <li><a href="#products" class="hover:text-tea-400 transition">茶品展示</a></li>
+                        <li><a href="#equipment" class="hover:text-tea-400 transition">環保裝備</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">政策與條款</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-tea-400 transition">隱私權政策</a></li>
+                        <li><a href="#" class="hover:text-tea-400 transition">服務條款</a></li>
+                        <li><a href="#" class="hover:text-tea-400 transition">加盟招募 (籌備中)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 text-center text-sm">
+                <p>&copy; 2026 茶迴 TeaLoop Co., Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 客製化訊息提示框 (Modal) -->
+    <div id="successModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-check text-4xl text-green-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-center text-gray-900 mb-2">訂單已成功送出！</h3>
+            <p class="text-center text-gray-600 mb-8" id="modalMessage">感謝您的預訂，我們將盡快為您準備新鮮茶飲。請於指定時間前往門市取餐。</p>
+            <button id="closeModal" class="w-full bg-tea-600 text-white font-bold py-3 rounded-xl hover:bg-tea-700 transition">
+                關閉視窗
+            </button>
+        </div>
+    </div>
+
+    <!-- 腳本 -->
+    <script>
+        // 導覽列滾動效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/90', 'bg-white/95');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white/90');
+            }
+        });
+
+        // 手機版選單切換
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 點擊手機選單項目後自動關閉
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 表單提交處理與 Modal 邏輯
+        const orderForm = document.getElementById('orderForm');
+        const successModal = document.getElementById('successModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+        const modalMessage = document.getElementById('modalMessage');
+
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // 防止頁面重整
+            
+            // 取得表單資料（示範用途）
+            const name = document.getElementById('name').value;
+            const drink = document.getElementById('drink').value;
+            
+            // 更新提示訊息
+            modalMessage.innerHTML = `親愛的 <strong>${name}</strong>，您訂購的<br><span class="text-tea-600 font-bold">${drink}</span> 已經收到訂單囉！<br>我們將盡快為您製作。`;
+
+            // 顯示 Modal
+            successModal.classList.remove('hidden');
+            // 延遲一點點以觸發動畫
+            setTimeout(() => {
+                successModal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+            
+            // 重置表單
+            orderForm.reset();
+        });
+
+        // 關閉 Modal
+        closeModal.addEventListener('click', () => {
+            successModal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                successModal.classList.add('hidden');
+            }, 300); // 等待動畫結束
+        });
+
+        // 點擊背景也可關閉 Modal
+        successModal.addEventListener('click', (e) => {
+            if(e.target === successModal) {
+                closeModal.click();
+            }
+        });
+    </script>
+</body>
+</html>
